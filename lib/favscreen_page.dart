@@ -1,12 +1,12 @@
 import 'package:favourites_project/homescreen_page.dart';
 import 'package:flutter/material.dart';
 class FavScreenPage extends StatefulWidget {
-  const FavScreenPage({Key? key}) : super(key: key);
+  const FavScreenPage( {Key? key}) : super(key: key);
 
   @override
   State<FavScreenPage> createState() => FavScreenPageState();
 }
-
+List<bool> remove = List.generate(6, (index) => false);
 
 class FavScreenPageState extends State<FavScreenPage> {
 
@@ -24,18 +24,25 @@ class FavScreenPageState extends State<FavScreenPage> {
             child: Text("There are no favorites yet!",
               style: TextStyle(color: Colors.black,fontSize: 22),),
           ):
-             ListTile(
-              title: Text(favoriteDataList[index]),
-               trailing: IconButton(onPressed: (){
-                 setState((){
-                   favoriteDataList.remove(favoriteDataList[index]);
+             Card(
+               margin: EdgeInsets.all(7),
+               shape: RoundedRectangleBorder(
+                 borderRadius: BorderRadius.circular(12),
+                 side: BorderSide(color: Colors.black)
+               ),
+               child: ListTile(
+                title: Text(favoriteDataList[index]),
+                 trailing: IconButton(onPressed: () {
+                   setState(()  {
+                   remove[index] =  favoriteDataList.remove(favoriteDataList[index]);
+                      isSelected[index]=false;
 
+                   });
 
-
-                 });
                  }
-               , icon: Icon(Icons.remove),),
-            );
+                 , icon: Icon(Icons.delete),),
+            ),
+             );
           }),
 
     );
