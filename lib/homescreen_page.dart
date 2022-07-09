@@ -38,15 +38,16 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               print("sample 1");
 
 
-print(homeDataList);
-print(favoriteDataList);
+
                  bool isFav=false;
                 for (int i = 0; i < homeDataList.length; i++) {
                   for(int j=0;j<favoriteDataList.length;j++){
                     if(homeDataList[i].contains(favoriteDataList[j])) {
+                      if(homeDataList[i]==favoriteDataList[j])
                       isFav=true;
                       print("home if:"+homeDataList[i]);
                       isSelected[i]=true;
+                      break;
                     }else{
                       isFav=false;
                       isSelected[i]=false;
